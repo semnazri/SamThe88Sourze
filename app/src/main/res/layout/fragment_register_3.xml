@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/sub_industry1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+
+        <Spinner
+            android:id="@+id/sub_industry2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp" />
+
+
+
+        <Spinner
+            android:id="@+id/sub_industry3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_next_regis3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:letterSpacing="1"
+        android:textColor="@color/white"
+        android:background="#0082d4"
+        android:text="Explore!" />
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:paddingTop="?attr/actionBarSize"
+             android:clipToPadding="false"
+             tools:context="com.konekthing.sniffy.ui.ScrollTestFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_yellow"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_orange"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_magenta"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_violet"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_blue"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_cyan"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/solarized_green"/>
+    </LinearLayout>
+
+
+</ScrollView>

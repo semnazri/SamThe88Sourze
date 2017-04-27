@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_0"
+            android:title="Home" />
+        <item
+            android:id="@+id/cimpany_profile"
+            android:icon="@drawable/ic_company_profile_0"
+            android:title="My Company Profile" />
+        <item
+            android:id="@+id/edit_profile"
+            android:icon="@drawable/ic_person_0"
+            android:title="Edit Profile" />
+        <item
+            android:id="@+id/inbox"
+            android:icon="@drawable/ic_message_0"
+            android:title="Inbox" />
+        <item
+            android:id="@+id/account_setings"
+            android:icon="@drawable/ic_settings_0"
+            android:title="Account Setings" />
+        <item
+            android:id="@+id/list_siplier"
+            android:icon="@drawable/ic_supplier_0"
+            android:title="List As Supplier" />
+        <item
+            android:id="@+id/list_opportunity"
+            android:icon="@drawable/ic_list_opportunity_0"
+            android:title="List An Opportunity" />
+
+        <item
+            android:id="@+id/favorite"
+            android:icon="@drawable/ic_love_2_0"
+            android:title="My Favorite" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout_0"
+            android:title="Log Out" />
+
+    </group>
+
+
+</menu>

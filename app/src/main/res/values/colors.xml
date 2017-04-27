@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<resources>
+    <color name="blue">#003E6F</color>
+    <color name="gold">#E39F4E</color>
+    <color name="gold_dark">#C28245</color>
+    <color name="transparent_dark">#20000000</color>
+    <color name="background">@color/solarized_base3</color>
+    <color name="primary">@color/blue</color>
+    <color name="accent">@color/gold_dark</color>
+    <color name="text_light">@color/solarized_base03</color>
+    <color name="white">#ffffff</color>
+    <color name="grey_text">#999999</color>
+    <color name="greysetings">#e4e4e4</color>
+    <color name="transparan">#FFFFFFFF</color>
+    <color name="text_color">#263544</color>
+    <color name="background_view_color">#415b75</color>
+    <color name="navigation_btm">#e6edf1</color>
+</resources>

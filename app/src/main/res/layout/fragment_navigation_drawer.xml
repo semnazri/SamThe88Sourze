@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="#415b75"
+          android:choiceMode="singleChoice"
+          android:divider="@color/solarized_base2"
+          android:dividerHeight="1px"
+          android:listSelector="?attr/selectableItemBackground"
+          tools:context="com.konekthing.intravest.ui.NavigationDrawerFragment"/>

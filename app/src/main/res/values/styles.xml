@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="android:windowBackground">@drawable/bg_pattern</item>-->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="AppTheme.Front">
+        <item name="vpiCirclePageIndicatorStyle">@style/CirclePageIndicator</item>
+        <item name="searchViewStyle">@style/AppSearchView</item>
+    </style>
+
+    <style name="AppTheme.Home">
+        <item name="colorControlNormal">@color/black</item>
+    </style>
+
+    <style name="CirclePageIndicator">
+        <item name="fillColor">@color/gold_dark</item>
+        <item name="pageColor">@color/blue</item>
+        <item name="radius">6dp</item>
+        <item name="snap">true</item>
+        <item name="centered">true</item>
+    </style>
+
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.FloatLabel" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/text_color_float_label</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.FloatLabel.Colored" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <color name="black">#000000</color>
+
+    <style name="checked">
+        <item name="colorAccent">#1c57ff</item>
+    </style>
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+    </style>
+</resources>

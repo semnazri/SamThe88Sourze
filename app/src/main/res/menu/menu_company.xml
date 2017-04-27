@@ -1,0 +1,14 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.konekthing.intravest.ui.HomeFragment">
+    <item
+        android:id="@+id/action_love"
+        android:icon="@drawable/ic_love_2"
+        android:title="Love It"
+        app:showAsAction="always"/>
+</menu>

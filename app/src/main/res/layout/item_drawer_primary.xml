@@ -1,0 +1,32 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingEnd="56dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="56dp"
+                android:paddingStart="16dp">
+
+    <ImageView
+        android:id="@+id/drawer_item_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/drawer_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/drawer_item_icon"
+        android:layout_toRightOf="@id/drawer_item_icon"
+        android:textColor="#ffffff"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

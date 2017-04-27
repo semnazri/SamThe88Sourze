@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Intravest</string>
+    <string name="copyright">\u00A9 2015 INTRAVEST</string>
+    <string name="title_supplier">Suppliers</string>
+    <string name="title_opportunity">Opportunities</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_company">Company</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_advanced_search">Advanced Search</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="nav_menu">
+
+        <item>Home</item>
+        <item>My Company Profile</item>
+        <item>Edit Profile</item>
+        <item>Inbox</item>
+        <item>Account Setings</item>
+        <item>List As Supplier</item>
+        <item>List An Opportunity</item>
+        <item>My Favorite</item>
+
+    </string-array>
+
+    <string-array name="nav_menu_icon">
+        <item>@drawable/ic_home_0</item>
+        <item>@drawable/ic_company_profile_0</item>
+        <item>@drawable/ic_person_0</item>
+        <item>@drawable/ic_message_0</item>
+        <item>@drawable/ic_settings_0</item>
+        <item>@drawable/ic_supplier_0</item>
+        <item>@drawable/ic_list_opportunity_0</item>
+        <item>@drawable/ic_love_2_0</item>
+    </string-array>
+</resources>

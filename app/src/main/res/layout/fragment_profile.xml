@@ -1,0 +1,568 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.konekthing.intravest.ui.ProfileFragment"
+                tools:ignore="RtlHardcoded">
+
+    <com.konekthing.intravest.ui.widget.NotifyingScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/header_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="@color/primary">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:scrollbars="horizontal"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+                    android:text="Gallery"
+                    android:background="#BF000000" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_shadow"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_person"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Representatif User"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Salutation"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_salutation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company Name"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Position in Company"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_phone_rep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_phone"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_email_rep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contact Email"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_company_profile"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company Details"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_registered_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Registered Company Name"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Province"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="City"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_postal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Postal Code"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Website"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Industry"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_industry_lvl1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Sub Industry 1"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_industry_lvl2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Sub Industry 2"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_industry_lvl3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="Sub Industry 3"
+                android:textColor="@color/secondary_text_default_material_light"/>
+
+            <Spinner
+                android:id="@+id/select_industry_lvl4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_product_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Product/Service"
+                    android:singleLine="false"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_year_establised"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Year Established"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_estimated_year_turnover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Estimated Yearly Turn Over"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_estimated_total_employee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Estimated Total Employee"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_capabilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company Capabilities"
+                    android:singleLine="false"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company History"
+                    android:singleLine="false"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <com.konekthing.intravest.ui.widget.FloatLabelLayout
+                xmlns:floatlabel="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                floatlabel:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
+            </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                card_view:cardBackgroundColor="@color/primary"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="2dp"
+                card_view:cardPreventCornerOverlap="false">
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button"
+                    android:text="Save"
+                    android:textColor="@color/background"
+                    android:textSize="14sp"/>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </com.konekthing.intravest.ui.widget.NotifyingScrollView>
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/loading_view"
+        xmlns:wheel="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        wheel:matProg_barColor="@color/accent"
+        wheel:matProg_progressIndeterminate="true"/>
+</RelativeLayout>

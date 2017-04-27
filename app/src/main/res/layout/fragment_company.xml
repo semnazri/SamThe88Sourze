@@ -1,0 +1,611 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.konekthing.intravest.ui.CompanyFragment">
+
+    <com.konekthing.intravest.ui.widget.NotifyingScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/header_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="@color/primary">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view_gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:scrollbars="horizontal" />
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#BF000000"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+                    android:textIsSelectable="true" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_shadow" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+                            <EditText
+                                android:id="@+id/input_address"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Address"
+                                android:inputType="none"
+                                android:maxLines="3"
+                                android:singleLine="false"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_industry"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Indistry"
+                                android:inputType="none"
+                                android:maxLines="4"
+                                android:singleLine="false"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_product_service"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Product Service"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_year_establised"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Year Established"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+                            <EditText
+                                android:id="@+id/input_estimated_year_turnover"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Estimated Yearly Turnover"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+                            <EditText
+                                android:id="@+id/input_estimated_total_employee"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Estimated Total Employee"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_phone" />
+
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="@string/hint_phone"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textColorHint="#000000"
+                                android:textIsSelectable="true" />
+
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_email" />
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:textColorHint="#000000"
+                                android:focusableInTouchMode="false"
+                                android:hint="@string/hint_email"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_website" />
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+                        <EditText
+                            android:id="@+id/input_website"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="Website"
+                            android:inputType="none"
+                            android:textColorHint="#000000"
+                            android:singleLine="true"
+                            android:textColor="@color/secondary_text_default_material_light"
+                            android:textIsSelectable="true" />
+
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                            <EditText
+                                android:id="@+id/input_capabilities"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="Capabilities"
+                                android:inputType="none"
+                                android:singleLine="false"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+                        <EditText
+                            android:id="@+id/input_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="History"
+                            android:inputType="none"
+                            android:singleLine="false"
+                            android:textColor="@color/secondary_text_default_material_light"
+                            android:textIsSelectable="true" />
+                    </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_person_0" />
+                    <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                        <EditText
+                            android:id="@+id/input_name_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="Representatif"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textColor="@color/secondary_text_default_material_light"
+                            android:textIsSelectable="true" />
+
+
+                    </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                </LinearLayout>
+
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_star" />
+
+                    <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                        <EditText
+                            android:id="@+id/input_position_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="Position"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textColor="@color/secondary_text_default_material_light"
+                            android:textIsSelectable="true" />
+
+                    </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                </LinearLayout>
+
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_phone" />
+
+                    <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+                        <EditText
+                            android:id="@+id/input_phone_rep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="@string/hint_phone"
+                            android:inputType="none"
+                            android:singleLine="true"
+                            android:textColor="@color/secondary_text_default_material_light"
+                            android:textIsSelectable="true" />
+
+                    </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_email" />
+                        <com.konekthing.intravest.ui.widget.FloatLabelLayout xmlns:floatlable="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            floatlable:floatLabelTextAppearance="@style/TextAppearance.AppTheme.FloatLabel">
+
+
+                            <EditText
+                                android:id="@+id/input_email_rep"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false"
+                                android:hint="@string/hint_email"
+                                android:inputType="none"
+                                android:singleLine="true"
+                                android:textColor="@color/secondary_text_default_material_light"
+                                android:textIsSelectable="true" />
+                        </com.konekthing.intravest.ui.widget.FloatLabelLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    card_view:cardBackgroundColor="@color/primary"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardPreventCornerOverlap="false">
+
+                    <Button
+                        android:id="@+id/btn_connections"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button"
+                        android:text="Show Connections"
+                        android:textColor="@color/background"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    card_view:cardBackgroundColor="@color/primary"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardPreventCornerOverlap="false">
+
+                    <Button
+                        android:id="@+id/btn_opportunities"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button"
+                        android:text="Show Opportunities Provided"
+                        android:textColor="@color/background"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </com.konekthing.intravest.ui.widget.NotifyingScrollView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_connection"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:alpha="0"
+        android:background="#ffffff"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_opportunity"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:alpha="0"
+        android:background="#ffffff"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <com.pnikosis.materialishprogress.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        wheel:matProg_barColor="@color/accent"
+        wheel:matProg_progressIndeterminate="true" />
+
+</RelativeLayout>

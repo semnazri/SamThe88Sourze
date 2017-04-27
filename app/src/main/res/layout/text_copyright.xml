@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<TextView
+    android:id="@+id/copyright"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center"
+    android:paddingTop="4dp"
+    android:text="@string/copyright"
+    android:textColor="@color/background"
+    android:textStyle="bold"/>

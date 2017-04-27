@@ -1,0 +1,10 @@
+<!--
+  ~ Copyright (c) 2015 Konekthing.
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/accent" android:state_activated="true"/>
+    <item android:color="@color/accent" android:state_pressed="true"/>
+    <item android:color="@color/secondary_text_default_material_light"/>
+</selector>

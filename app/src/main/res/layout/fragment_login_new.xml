@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ico_thesourze"
+        android:id="@+id/imageView" />
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/edt_username"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"/>
+
+        <EditText
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/edt_password"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:background="@drawable/btn_shape_login"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/forgot_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password"/>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Register"
+            android:textColor="#ffffff"
+            android:background="@drawable/btn_shape_regis"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
