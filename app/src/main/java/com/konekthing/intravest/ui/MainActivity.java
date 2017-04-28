@@ -7,6 +7,8 @@ package com.konekthing.intravest.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,12 +20,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.konekthing.intravest.R;
 import com.konekthing.intravest.network.Connection;
 
-import ca.gcastle.bottomnavigation.view.BottomNavigationView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -39,6 +41,33 @@ public class MainActivity extends BaseActivity
     Toolbar mToolbar;
     private TextView name, position;
     private CircleImageView photo;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.timeline:
+                    Toast.makeText(MainActivity.this, "Timeline", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.inbox:
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.container, new OpportunityFragment(), "cart").addToBackStack("menu");
+                    fragmentTransaction.commit();
+                    Toast.makeText(MainActivity.this, "Inbox", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.opportunities:
+                    Toast.makeText(MainActivity.this, "Opportunities", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.suppliers:
+                    Toast.makeText(MainActivity.this, "Supplier", Toast.LENGTH_SHORT).show();
+                    return true;
+            }
+            return false;
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +105,11 @@ public class MainActivity extends BaseActivity
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         navigationView.setNavigationItemSelectedListener(this);
-        View header=navigationView.getHeaderView(0);
+        View header = navigationView.getHeaderView(0);
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
         photo = (CircleImageView) header.findViewById(R.id.drawer_image);
         name = (TextView) header.findViewById(R.id.drawer_name);
@@ -91,6 +123,8 @@ public class MainActivity extends BaseActivity
 
         Connection.getInstance(this).getImageLoader()
                 .get(sp.getString(ProfileFragment.PREF_PHOTO, ""), ImageLoader.getImageListener(photo, R.drawable.intravest, R.drawable.intravest));
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.bottom_navigation);
 
 //        mNavigationDrawerFragment = (NavigationDrawerFragment)
 //                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -140,7 +174,7 @@ public class MainActivity extends BaseActivity
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             finish();
         }
 
@@ -182,7 +216,7 @@ public class MainActivity extends BaseActivity
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, fragment,"darimenu").addToBackStack("menu");
+            fragmentTransaction.replace(R.id.container, fragment, "darimenu").addToBackStack("menu");
             fragmentTransaction.commit();
 
 
@@ -196,11 +230,11 @@ public class MainActivity extends BaseActivity
     private void doLogout() {
 
         SharedPreferences sp = getSharedPreferences();
-                sp.edit().putBoolean(LoginFragment.PREF_IS_LOGIN, false)
-                        .putString(ProfileFragment.PREF_EMAIL, null)
-                        .putString(ProfileFragment.PREF_PASSWORD, null)
-                        .apply();
-                finish();
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        sp.edit().putBoolean(LoginFragment.PREF_IS_LOGIN, false)
+                .putString(ProfileFragment.PREF_EMAIL, null)
+                .putString(ProfileFragment.PREF_PASSWORD, null)
+                .apply();
+        finish();
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
     }
 }

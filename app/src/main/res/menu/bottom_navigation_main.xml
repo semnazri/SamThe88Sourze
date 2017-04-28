@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/timeline"
+        android:enabled="true"
+        android:icon="@drawable/icon_menu_bottom_timeline"
+        android:title="Timeline"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/inbox"
+        android:enabled="true"
+        android:icon="@drawable/icon_menu_bottom_inbox"
+        android:title="Inbox"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/opportunities"
+        android:enabled="true"
+        android:icon="@drawable/icon_menu_bottom_favorite"
+        android:title="Opportunities"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/suppliers"
+        android:enabled="true"
+        android:icon="@drawable/icon_menu_bottom_upgrade"
+        android:title="Suppliers"
+        app:showAsAction="ifRoom" />
+
+</menu>
