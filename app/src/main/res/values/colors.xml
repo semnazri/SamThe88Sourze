@@ -20,4 +20,5 @@
     <color name="background_view_color">#415b75</color>
     <color name="navigation_btm">#e6edf1</color>
     <color name="btm_nav_color">#e6edf1</color>
+    <color name="borderColor">#333333</color>
 </resources>
