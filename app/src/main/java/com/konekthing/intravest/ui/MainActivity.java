@@ -4,6 +4,8 @@
 
 package com.konekthing.intravest.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,8 +41,10 @@ public class MainActivity extends BaseActivity
     NavigationView navigationView;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
+    FragmentManager fragmentManager;
     private TextView name, position;
     private CircleImageView photo;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -53,7 +57,7 @@ public class MainActivity extends BaseActivity
                 case R.id.inbox:
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.container, new OpportunityFragment(), "cart").addToBackStack("menu");
+                    fragmentTransaction.add(R.id.container, new OpportunityFragment(), "darimenu").addToBackStack("menu");
                     fragmentTransaction.commit();
                     Toast.makeText(MainActivity.this, "Inbox", Toast.LENGTH_SHORT).show();
                     return true;
@@ -170,16 +174,6 @@ public class MainActivity extends BaseActivity
 //        fragmentTransaction.commit();
 //    }
 
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            finish();
-        }
-
-//        super.onBackPressed();
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -214,7 +208,7 @@ public class MainActivity extends BaseActivity
         drawer.closeDrawer(GravityCompat.START);
 
         if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container, fragment, "darimenu").addToBackStack("menu");
             fragmentTransaction.commit();
@@ -236,5 +230,37 @@ public class MainActivity extends BaseActivity
                 .apply();
         finish();
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.container); // get the fragment that is currently loaded in placeholder
+        Object tag = f.getTag();
+
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+
+        } else if (fragmentManager.getBackStackEntryCount() == 1) {
+
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage("Do you want to close this application?")
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int wich) {
+                                    finish();
+                                }
+                            }).setNegativeButton("No", null).show();
+
+        } else if (tag.equals("darimenu")) {
+            fragmentManager.popBackStack();
+
+        } else {
+//            finish();
+        }
+
+//        super.onBackPressed();
     }
 }
