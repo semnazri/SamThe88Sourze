@@ -93,10 +93,12 @@
                 <Spinner
                     android:id="@+id/spinner_prjct_val"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    style="@style/spinner_style"
                     android:layout_weight="3" />
 
                 <EditText
+                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -200,7 +202,8 @@
                     <Spinner
                         android:id="@+id/spinner_region"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="40dp"
+                        style="@style/spinner_style"/>
 
 
                 </LinearLayout>
@@ -223,7 +226,8 @@
                     <Spinner
                         android:id="@+id/spinner_status"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></Spinner>
+                        android:layout_height="40dp"
+                        style="@style/spinner_style"/>
 
                 </LinearLayout>
             </LinearLayout>
