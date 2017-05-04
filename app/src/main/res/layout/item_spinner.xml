@@ -6,6 +6,7 @@
 
     <TextView
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:id="@+id/item_sub_industries"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="tahun spiner"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/id_data"
