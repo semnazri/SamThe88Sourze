@@ -5,17 +5,6 @@
     android:background="@drawable/bg"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/container_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -29,7 +18,8 @@
         <Spinner
             android:id="@+id/sub_industry1"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            style="@style/spinner_style"/>
 
 
 
@@ -37,7 +27,8 @@
             android:id="@+id/sub_industry2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            style="@style/spinner_style"/>
 
 
 
@@ -45,7 +36,8 @@
             android:id="@+id/sub_industry3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            style="@style/spinner_style"/>
 
 
     </LinearLayout>

@@ -1,11 +1,15 @@
 package com.konekthing.intravest.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,43 +28,47 @@ import java.util.List;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class RegisterActivity_2 extends AppCompatActivity {
+public class RegisterActivity_2 extends Fragment {
 
     private RecyclerView rv;
     private RegisterIndustriesAdapter adapter;
     private GridLayoutManager glm;
     private List<Industries> list_industries;
 
-    Toolbar mToolbar;
-    ImageView btn;
+    private View view;
+
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_register_2);
 
-        rv = (RecyclerView) findViewById(R.id.rv_industries);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_register_2,container,false);
+
+        rv = (RecyclerView) view.findViewById(R.id.rv_industries);
         list_industries = getAllIndustries();
-        glm = new GridLayoutManager(RegisterActivity_2.this, 3);
+        glm = new GridLayoutManager(getActivity(), 3);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(glm);
-        adapter = new RegisterIndustriesAdapter(RegisterActivity_2.this, list_industries);
+        adapter = new RegisterIndustriesAdapter(getActivity(), list_industries);
         rv.setAdapter(adapter);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
-        TextView tv = (TextView) findViewById(R.id.TextToolbar);
-        btn = (ImageView) findViewById(R.id.back_btn);
-        tv.setText("Industries");
-        btn.setOnClickListener(new View.OnClickListener() {
+        RegisterActivity.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getFragmentManager().popBackStack();
             }
         });
-        setSupportActionBar(mToolbar);
 
+        RegisterActivity.tv.setText("Industries");
+
+        return view;
     }
 
     private List<Industries> getAllIndustries() {

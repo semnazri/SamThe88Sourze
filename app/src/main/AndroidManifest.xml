@@ -39,24 +39,20 @@
         <activity android:name=".ui.SupplierActivity"></activity>
         <activity android:name=".ui.OpportunityActivity"></activity>
 
-        <activity android:name=".ui.RegisterActivity_1"
-            android:parentActivityName=".ui.MainMenuActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainMenuActivity" />
+        <activity android:name=".ui.RegisterActivity">
+            <!--android:parentActivityName=".ui.MainMenuActivity">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value=".ui.MainMenuActivity" /
+                >-->
         </activity>
-        <activity android:name=".ui.RegisterActivity_2"
-            android:parentActivityName=".ui.MainMenuActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainMenuActivity" />
-        </activity>
-        <activity android:name=".ui.RegisterActivity_3"
-            android:parentActivityName=".ui.MainMenuActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainMenuActivity" />
-        </activity>
+
+        <!--<activity android:name=".ui.RegisterActivity_3"-->
+            <!--android:parentActivityName=".ui.MainMenuActivity">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value=".ui.MainMenuActivity" />-->
+        <!--</activity>-->
     </application>
 
 </manifest>

@@ -2,6 +2,10 @@ package com.konekthing.intravest.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +15,12 @@ import com.bumptech.glide.Glide;
 import com.konekthing.intravest.R;
 import com.konekthing.intravest.ViewHolder.IndustriesViewHolder;
 import com.konekthing.intravest.model.Industries;
+import com.konekthing.intravest.ui.RegisterActivity;
 import com.konekthing.intravest.ui.RegisterActivity_3;
 
 import java.util.List;
+
+import static com.konekthing.intravest.ui.RegisterActivity.activity;
 
 /**
  * Created by Semmy
@@ -40,8 +47,14 @@ public class RegisterIndustriesAdapter extends RecyclerView.Adapter<IndustriesVi
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(mContext, RegisterActivity_3.class);
-                mContext.startActivity(i);
+                Bundle bundle = new Bundle();
+
+                Fragment fragment = new RegisterActivity_3();
+                fragment.setArguments(bundle);
+
+                FragmentManager fm = ((RegisterActivity) mContext).getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.container_bro, fragment, "berita").addToBackStack("listhalaman").commit();
             }
         });
 

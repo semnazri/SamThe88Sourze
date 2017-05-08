@@ -39,7 +39,7 @@ public class MainMenuActivity extends BaseActivity {
         btn_regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainMenuActivity.this, RegisterActivity_1.class);
+                Intent i = new Intent(MainMenuActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });

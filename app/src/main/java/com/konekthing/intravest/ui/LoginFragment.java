@@ -109,7 +109,7 @@ public class LoginFragment extends BaseFragment {
         btn_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), RegisterActivity_1.class);
+                Intent i = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(i);
             }
         });
