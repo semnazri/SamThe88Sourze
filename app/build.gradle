@@ -38,5 +38,6 @@ dependencies {
     compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.2'
     compile 'net.danlew:android.joda:2.7.1'
     compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.google.code.gson:gson:2.8.0'
 //    compile 'ca.gcastle:BottomNavigation:1.0.0'
     compile 'com.android.volley:volley:1.0.0'}

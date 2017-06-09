@@ -13,7 +13,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
+import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +24,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 import com.konekthing.intravest.App;
 import com.konekthing.intravest.R;
 import com.konekthing.intravest.model.Profile;
-import com.konekthing.intravest.network.Connection;
-import com.konekthing.intravest.network.JacksonRequest;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link BaseFragment} subclass.
@@ -40,13 +46,15 @@ public class LoginFragment extends BaseFragment {
 
     public static final String PREF_IS_LOGIN = "is_login";
 
-    static final String LOGIN_URL = "/auth";
+    static final String LOGIN_URL = "auth";
 
     private PageNavigator mNavigator;
     private View mContentView, mLoadingView;
     private EditText mInputEmail;
     private EditText mInputPassword;
     private Button mBtnLogin, btn_reg;
+    private String tag_json_obj = "jobj_req";
+
 
     private TextView.OnEditorActionListener mOnEditorAction =
             new TextView.OnEditorActionListener() {
@@ -131,43 +139,91 @@ public class LoginFragment extends BaseFragment {
         mNavigator = null;
     }
 
-    private void login(final Context context, String username, final String password, final SharedPreferences sp) {
-        JacksonRequest<Profile> request = JacksonRequest.<Profile>method(Request.Method.GET)
-                .url(App.BASE_URL + LOGIN_URL )
-                .listener(new Response.Listener<Profile>() {
-                    @Override
-                    public void onResponse(Profile response) {
+    private void login(final Context context, final String username, final String password, final SharedPreferences sp) {
 
-                        Log.d ("aa",response.toString());
-                        sp.edit()
-                                .putLong(ProfileFragment.PREF_ID, response.getId())
-                                .putString(ProfileFragment.PREF_EMAIL, response.getEmail())
-                                .putString(ProfileFragment.PREF_PASSWORD, password)
-                                .putString(ProfileFragment.PREF_SALUTATION, response.getSalutation())
-                                .putString(ProfileFragment.PREF_FIRSTNAME, response.getFirstname())
-                                .putString(ProfileFragment.PREF_LASTNAME, response.getLastname())
-                                .putString(ProfileFragment.PREF_COMPANY, response.getCompany())
-                                .putString(ProfileFragment.PREF_POSITION, response.getPosition())
-                                .putString(ProfileFragment.PREF_PHONE, response.getPhone())
-                                .putString(ProfileFragment.PREF_PHOTO, response.getPhoto())
-                                .putBoolean(PREF_IS_LOGIN, true)
-                                .apply();
-                        startActivity(new Intent(context, MainActivity.class));
-                        getActivity().finish();
-                    }
-                })
-                .errorListener(new Response.ErrorListener() {
+//        JacksonRequest<Profile> request = JacksonRequest.<Profile>method(Request.Method.GET)
+//                .url(App.BASE_URL + LOGIN_URL )
+//                .listener(new Response.Listener<Profile>() {
+//                    @Override
+//                    public void onResponse(Profile response) {
+//
+//                        Log.d ("aa",response.toString());
+//                        sp.edit()
+//                                .putLong(ProfileFragment.PREF_ID, response.getId())
+//                                .putString(ProfileFragment.PREF_EMAIL, response.getEmail())
+//                                .putString(ProfileFragment.PREF_PASSWORD, password)
+//                                .putString(ProfileFragment.PREF_SALUTATION, response.getSalutation())
+//                                .putString(ProfileFragment.PREF_FIRSTNAME, response.getFirstname())
+//                                .putString(ProfileFragment.PREF_LASTNAME, response.getLastname())
+//                                .putString(ProfileFragment.PREF_COMPANY, response.getCompany())
+//                                .putString(ProfileFragment.PREF_POSITION, response.getPosition())
+//                                .putString(ProfileFragment.PREF_PHONE, response.getPhone())
+//                                .putString(ProfileFragment.PREF_PHOTO, response.getPhoto())
+//                                .putBoolean(PREF_IS_LOGIN, true)
+//                                .apply();
+//                        startActivity(new Intent(context, MainActivity.class));
+//                        getActivity().finish();
+//                    }
+//                })
+//                .errorListener(new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+////                        crossfade(mContentView, mLoadingView);
+//                    }
+//                })
+//                .clazz(Profile.class)
+//                .username(username)
+//                .password(password)
+//                .build();
+//        try {
+//            request.getHeaders();
+//        } catch (AuthFailureError authFailureError) {
+//            authFailureError.printStackTrace();
+//        }
+//        request.setTag(getTag());
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, App.BASE_URL + LOGIN_URL, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
-//                        crossfade(mContentView, mLoadingView);
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            Gson gson = new Gson();
+                            Profile profile = gson.fromJson(response.toString(), Profile.class);
+
+                            if (profile != null) {
+                                Toast.makeText(context, "Hpray!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
-                })
-                .clazz(Profile.class)
-                .username(username)
-                .password(password)
-                .build();
-        request.setTag(getTag());
-        Connection.getInstance(context).addToRequestQueue(request);
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+//                   Map<String, String> headers = new HashMap<>();
+                HashMap<String, String> headers = new HashMap<String, String>();
+                if (username != null && password != null) {
+                    String credentials = username + ":" + password;
+//                    String credentials = String.format("%s:%s",username,password);
+                    String encodedCredentials = Base64.encodeToString(credentials.getBytes(),
+                            Base64.DEFAULT);
+                    headers.put("Content-Type", "application/json; charset=utf-8");
+//                    headers.put("Content-Type", "application/json; charset=utf-8");
+                    headers.put("Authorization", "Basic " + encodedCredentials);
+
+                }
+
+                return headers;
+            }
+        };
+
+        App.getInstance().addToRequestQueue(request,"jor");
     }
 }

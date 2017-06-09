@@ -1,8 +1,4 @@
-/*
- * Copyright (c) 2015 Konekthing.
- */
-
-package com.konekthing.intravest;
+package com.konekthing.intravest.network;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -11,39 +7,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.konekthing.intravest.network.AppController;
 import com.konekthing.intravest.network.cache.LruBitmapCache2;
 
-import net.danlew.android.joda.JodaTimeAndroid;
 
-/**
- * Created by renjaya on 4/7/15.
- */
-public class App extends Application {
-
-//    public static final String BASE_URL = "http://demo.konekthing.com/eproks_final/api/v1";
-    public static final String BASE_URL = "http://thesourze.com/api/v1/";
-
-    private boolean mActivityInForeground;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mInstance = this;
-        JodaTimeAndroid.init(getApplicationContext());
-    }
-
-    public boolean isInForeground() {
-        return mActivityInForeground;
-    }
-
-    public void setActivityPaused() {
-        mActivityInForeground = false;
-    }
-
-    public void setActivityResumed() {
-        mActivityInForeground = true;
-    }
+public class AppController extends Application {
 
     public static final String TAG = AppController.class
             .getSimpleName();
@@ -51,10 +18,15 @@ public class App extends Application {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
-    private static App mInstance;
+    private static AppController mInstance;
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
+    }
 
-    public static synchronized App getInstance()   {
+    public static synchronized AppController getInstance()   {
         return mInstance;
     }
 

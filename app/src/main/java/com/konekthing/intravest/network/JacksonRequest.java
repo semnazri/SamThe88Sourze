@@ -193,6 +193,8 @@ public class JacksonRequest<T> extends Request<T> {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         return createBasicAuthHeader();
+
+
     }
 
     @Override
@@ -225,7 +227,7 @@ public class JacksonRequest<T> extends Request<T> {
                     Base64.NO_WRAP);
             headerMap.put("Authorization", "Basic " + encodedCredentials);
         }
-        headerMap.put("X-API-KEY", mRequestKey);
+//        headerMap.put("X-API-KEY", mRequestKey);
         return headerMap;
     }
 
