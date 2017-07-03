@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,20 +25,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.konekthing.intravest.App;
+import com.konekthing.intravest.Interface.UserInterface;
 import com.konekthing.intravest.R;
-import com.konekthing.intravest.model.Profile;
+import com.konekthing.intravest.network.POJO.UserPojo;
 
-import org.json.JSONObject;
+import org.json.JSONException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+
+import okhttp3.Credentials;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
+import okio.ByteString;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link BaseFragment} subclass.
@@ -46,7 +53,7 @@ public class LoginFragment extends BaseFragment {
 
     public static final String PREF_IS_LOGIN = "is_login";
 
-    static final String LOGIN_URL = "auth";
+    static final String LOGIN_URL = "auth/";
 
     private PageNavigator mNavigator;
     private View mContentView, mLoadingView;
@@ -62,8 +69,12 @@ public class LoginFragment extends BaseFragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_GO || actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
 
-                        login(getActivity(), mInputEmail.getText().toString(),
-                                mInputPassword.getText().toString(), getSharedPreferences());
+                        try {
+                            login(getActivity(), mInputEmail.getText().toString(),
+                                    mInputPassword.getText().toString(), getSharedPreferences());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         return true;
                     }
@@ -109,8 +120,12 @@ public class LoginFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 //                crossfadeInverse(mContentView, mLoadingView);
-                login(getActivity(), mInputEmail.getText().toString(),
-                        mInputPassword.getText().toString(), getSharedPreferences());
+                try {
+                    login(getActivity(), mInputEmail.getText().toString(),
+                            mInputPassword.getText().toString(), getSharedPreferences());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -139,7 +154,7 @@ public class LoginFragment extends BaseFragment {
         mNavigator = null;
     }
 
-    private void login(final Context context, final String username, final String password, final SharedPreferences sp) {
+    private void login(final Context context, final String username, final String password, final SharedPreferences sp) throws JSONException {
 
 //        JacksonRequest<Profile> request = JacksonRequest.<Profile>method(Request.Method.GET)
 //                .url(App.BASE_URL + LOGIN_URL )
@@ -183,47 +198,54 @@ public class LoginFragment extends BaseFragment {
 //        }
 //        request.setTag(getTag());
 
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, App.BASE_URL + LOGIN_URL, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        if (response != null) {
-                            Gson gson = new Gson();
-                            Profile profile = gson.fromJson(response.toString(), Profile.class);
-
-                            if (profile != null) {
-                                Toast.makeText(context, "Hpray!!!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+        okHttpClient.addInterceptor(new Interceptor() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-                Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show();
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                okhttp3.Request originalRequest = chain.request();
+
+                String usernameAndPassword = username + ":" + password;
+                byte[] bytes = usernameAndPassword.getBytes("UTF-8");
+                String encoded = Base64.encodeToString(bytes, Base64.NO_WRAP);
+
+                Request.Builder builder = originalRequest.newBuilder().addHeader("Authorization",
+                        "Basic " + encoded);
+
+                Request newRequest = builder.build();
+                return chain.proceed(newRequest);
             }
-        }) {
+        });
 
+        OkHttpClient client = okHttpClient.build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(App.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserInterface service = retrofit.create(UserInterface.class);
+        Call<ResponseBody> call = service.getAuthorize();
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-//                   Map<String, String> headers = new HashMap<>();
-                HashMap<String, String> headers = new HashMap<String, String>();
-                if (username != null && password != null) {
-                    String credentials = username + ":" + password;
-//                    String credentials = String.format("%s:%s",username,password);
-                    String encodedCredentials = Base64.encodeToString(credentials.getBytes(),
-                            Base64.DEFAULT);
-                    headers.put("Content-Type", "application/json; charset=utf-8");
-//                    headers.put("Content-Type", "application/json; charset=utf-8");
-                    headers.put("Authorization", "Basic " + encodedCredentials);
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
 
+                Toast.makeText(getActivity(), "berhasil", Toast.LENGTH_SHORT).show();
+
+                Gson gson = new Gson();
+                try {
+                    UserPojo userpojo = gson.fromJson(response.body().string(), UserPojo.class);
+                    Log.d("response", userpojo.toString());
+                } catch (NullPointerException | IOException e) {
+                    e.printStackTrace();
                 }
-
-                return headers;
             }
-        };
 
-        App.getInstance().addToRequestQueue(request,"jor");
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                android.util.Log.d("onFailure", t.toString());
+                Toast.makeText(getContext(), "gagal", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
