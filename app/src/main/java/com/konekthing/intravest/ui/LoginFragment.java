@@ -29,18 +29,33 @@ import com.google.gson.Gson;
 import com.konekthing.intravest.App;
 import com.konekthing.intravest.Interface.UserInterface;
 import com.konekthing.intravest.R;
+import com.konekthing.intravest.network.BasicAuthInterceptor;
 import com.konekthing.intravest.network.POJO.UserPojo;
 
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.util.Collections;
 
-import okhttp3.Credentials;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
+import okhttp3.ConnectionSpec;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okio.ByteString;
+import okhttp3.TlsVersion;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -73,6 +88,8 @@ public class LoginFragment extends BaseFragment {
                             login(getActivity(), mInputEmail.getText().toString(),
                                     mInputPassword.getText().toString(), getSharedPreferences());
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
                             e.printStackTrace();
                         }
 
@@ -125,6 +142,8 @@ public class LoginFragment extends BaseFragment {
                             mInputPassword.getText().toString(), getSharedPreferences());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -154,7 +173,7 @@ public class LoginFragment extends BaseFragment {
         mNavigator = null;
     }
 
-    private void login(final Context context, final String username, final String password, final SharedPreferences sp) throws JSONException {
+    private void login(final Context context, final String username, final String password, final SharedPreferences sp) throws JSONException, IOException {
 
 //        JacksonRequest<Profile> request = JacksonRequest.<Profile>method(Request.Method.GET)
 //                .url(App.BASE_URL + LOGIN_URL )
@@ -198,25 +217,41 @@ public class LoginFragment extends BaseFragment {
 //        }
 //        request.setTag(getTag());
 
-        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-        okHttpClient.addInterceptor(new Interceptor() {
-            @Override
-            public okhttp3.Response intercept(Chain chain) throws IOException {
-                okhttp3.Request originalRequest = chain.request();
 
-                String usernameAndPassword = username + ":" + password;
-                byte[] bytes = usernameAndPassword.getBytes("UTF-8");
-                String encoded = Base64.encodeToString(bytes, Base64.NO_WRAP);
+//        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+//        okHttpClient.addInterceptor(new Interceptor() {
+//            @Override
+//            public okhttp3.Response intercept(Chain chain) throws IOException {
+//                okhttp3.Request originalRequest = chain.request();
+//
+//                String usernameAndPassword = username + ":" + password;
+//                byte[] bytes = usernameAndPassword.getBytes("UTF-8");
+//                String encoded = Base64.encodeToString(bytes, Base64.NO_WRAP);
+//
+//                Request.Builder builder = originalRequest.newBuilder().addHeader("Authorization",
+//                        "Basic " + encoded);
+//
+//                Request newRequest = builder.build();
+//                return chain.proceed(newRequest);
+//            }
+//        });
+//        OkHttpClient client = new OkHttpClient.Builder()
+//                .addInterceptor(new BasicAuthInterceptor(username, password))
+//                .build();
+        OkHttpClient client = new OkHttpClient().newBuilder().addNetworkInterceptor(
+                new Interceptor() {
+                    @Override
+                    public Response intercept(Interceptor.Chain chain) throws IOException {
+                        Request request = chain.request();
+                        HttpUrl url = request.url();
+                        url = url.newBuilder().username(username).password(password).build();
+                        Request newRequest = request.newBuilder().url(url).build();
+                        return chain.proceed(newRequest);
+                    }
+                }
+        ).build();
 
-                Request.Builder builder = originalRequest.newBuilder().addHeader("Authorization",
-                        "Basic " + encoded);
 
-                Request newRequest = builder.build();
-                return chain.proceed(newRequest);
-            }
-        });
-
-        OkHttpClient client = okHttpClient.build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(App.BASE_URL)
                 .client(client)
@@ -247,5 +282,36 @@ public class LoginFragment extends BaseFragment {
         });
 
 
+    }
+
+    private static SSLContext getSSLConfig(Context context) throws CertificateException, IOException,
+            KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+
+        // Loading CAs from an InputStream
+        CertificateFactory cf = null;
+        cf = CertificateFactory.getInstance("X.509");
+
+        Certificate ca;
+        // I'm using Java7. If you used Java6 close it manually with finally.
+        try (InputStream cert = context.getResources().openRawResource(R.raw.certificate)) {
+            ca = cf.generateCertificate(cert);
+        }
+
+        // Creating a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore   = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("ca", ca);
+
+        // Creating a TrustManager that trusts the CAs in our KeyStore.
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+
+        // Creating an SSLSocketFactory that uses our TrustManager
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, tmf.getTrustManagers(), null);
+
+        return sslContext;
     }
 }

@@ -22,7 +22,7 @@ import net.danlew.android.joda.JodaTimeAndroid;
 public class App extends Application {
 
 //    public static final String BASE_URL = "http://demo.konekthing.com/eproks_final/api/v1";
-    public static final String BASE_URL = "http://thesourze.com/api/v1/";
+    public static final String BASE_URL = "https://www.thesourze.com/api/v1/";
 
     private boolean mActivityInForeground;
 
